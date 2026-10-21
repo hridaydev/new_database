@@ -7,6 +7,8 @@ from schema import StudentResponse, StudentUpdateRequest, StudentCreateRequet
 routers = APIRouter(prefix="/students",tags=["Student"])
 
 
+
+
 @routers.get("/list", status_code= status.HTTP_200_OK)
 def get_all_students(db = Depends(get_db)):
      service = StudentService()
@@ -30,3 +32,7 @@ def update_student(roll: str, update_student: StudentUpdateRequest, db =Depends(
      return service.update_student(db, update_student, roll)
 
 
+@routers.delete("/{roll}")
+def delete_student_by_roll(roll: str, db:Session = Depends(get_db)):
+    service = StudentService()
+    return service.delete_student_by_roll(db, roll)
