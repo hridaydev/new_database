@@ -13,3 +13,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+
+app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
